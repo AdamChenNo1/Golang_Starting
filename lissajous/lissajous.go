@@ -2,25 +2,20 @@
  * @Descripttion:
  * @version: v0.1
  * @Author: Elon C
- * @Date: 2021-05-24 23:06:23
+ * @Date: 2021-05-28 15:03:26
  * @LastEditors: Elon C
- * @LastEditTime: 2021-05-24 23:27:30
- * @FilePath: \GoPath\src\lissajous\main.go
+ * @LastEditTime: 2021-05-28 20:00:07
+ * @FilePath: \Golang_Starting\lissajous\lissajous.go
  */
-//lissajous 产生随机利萨茹图形的GIF动画
-package main
+package lissajous
 
 import (
 	"image"
 	"image/color"
 	"image/gif"
 	"io"
-	"log"
 	"math"
 	"math/rand"
-	"net/http"
-	"os"
-	"time"
 )
 
 var palette = []color.Color{color.White, color.Black}
@@ -30,22 +25,7 @@ const (
 	blackIndex = 1 // 画板中的第二种颜色
 )
 
-func main() {
-	rand.Seed(time.Now().UTC().UnixNano())
-
-	if len(os.Args) > 1 && os.Args[1] == "web" {
-		handler := func(w http.ResponseWriter, r *http.Request) {
-			lissajous(w)
-		}
-		http.HandleFunc("/", handler)
-		log.Fatal(http.ListenAndServe("localhost:8080", nil))
-		return
-	}
-
-	lissajous(os.Stdout)
-}
-
-func lissajous(out io.Writer) {
+func Lissajous(out io.Writer) {
 	const (
 		cycles  = 5     //	完整的x振荡器变化的个数
 		res     = 0.001 //	角度分辨率

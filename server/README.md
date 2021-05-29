@@ -4,5 +4,15 @@
   - 例如，如果请求的URL是http://localhost:8080/hello，响应则是URL.Path="/hello"
 - main函数将一个处理函数和以/开头的URL链接在一起，代表所有的URL使用这个函数处理，然后启动服务器监听进入8000断口处的请求
 - 一个请求由一个http.Request类型的结构体表示，它包含很多关联的域，其中一个是请求的URL，使用fmt.Printf格式化，然后作为响应发送出去
+## v2
+- 请求/count调用counter，其他的路径调用handler。
+- mu.Lock和mu.Unlock语句确保最多只有一个goroutine在同一时间访问变量
+## v3
+- 处理函数报告它接收到的消息头和表单数据
+## v4
+- 整合web服务和lissajous函数
 ## Todo
 - v1测试
+- v2测试
+- v3测试
+- v4测试

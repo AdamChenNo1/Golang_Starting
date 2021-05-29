@@ -4,14 +4,14 @@
  * @Author: Elon C
  * @Date: 2021-05-27 22:41:21
  * @LastEditors: Elon C
- * @LastEditTime: 2021-05-28 13:18:53
- * @FilePath: \Golang_Starting\server\v1\server.go
+ * @LastEditTime: 2021-05-28 20:05:11
+ * @FilePath: \Golang_Starting\server\v4\server.go
  */
-// server v1 返回服务器的URL的路径部分
+// server v4 返回利萨茹图形
 package main
 
 import (
-	"fmt"
+	lissajous "gostart/lissajous"
 	"log"
 	"net/http"
 )
@@ -23,5 +23,6 @@ func main() {
 
 // 处理程序回显请求URL r的路径部分
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
+	// fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
+	lissajous.Lissajous(w)
 }
