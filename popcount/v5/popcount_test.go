@@ -4,8 +4,8 @@
  * @Author: Elon C
  * @Date: 2021-07-14 20:06:40
  * @LastEditors: Elon C
- * @LastEditTime: 2021-07-14 20:39:31
- * @FilePath: \Golang_Starting\popcount\v2\popcount_test.go
+ * @LastEditTime: 2021-07-14 20:39:24
+ * @FilePath: \Golang_Starting\popcount\v1\popcount_test.go
  */
 package popcount
 
