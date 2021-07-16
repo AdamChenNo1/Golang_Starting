@@ -4,8 +4,8 @@
  * @Author: Elon C
  * @Date: 2021-07-15 17:48:55
  * @LastEditors: Elon C
- * @LastEditTime: 2021-07-15 18:07:13
- * @FilePath: \Golang_Starting\github\issues.go
+ * @LastEditTime: 2021-07-15 21:33:03
+ * @FilePath: \Golang_Starting\github\issues\issues.go
  */
 package github
 
