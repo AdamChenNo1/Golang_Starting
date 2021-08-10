@@ -5,7 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-<<<<<<< HEAD
             "name": "Launch file",
             "type": "go",
             "request": "launch",
@@ -14,18 +13,11 @@
             "args": ["C:\\Users\\Elon\\Desktop\\golang\\Golang_Starting\\bin\\index.html"]
         },
         {
-=======
->>>>>>> a6c4b4fd1520f2d0e3f6a0578e37859b1151e596
             "name": "Launch Package",
             "type": "go",
             "request": "launch",
             "mode": "auto",
-<<<<<<< HEAD
             "program": "${fileDirname}"
-=======
-            "program": "${fileDirname}",
-            "args":["search","issues","-q=repo:golang/go","is:open","json","decoder","-s=created"]
->>>>>>> a6c4b4fd1520f2d0e3f6a0578e37859b1151e596
         }
     ]
 }
