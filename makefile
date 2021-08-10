@@ -3,10 +3,12 @@ GOBIN := $(BASE)/bin
 GOSRC := ./src
 PROGS := findlinks1.exe\
 		findlinks2.exe\
+		findlinks3.exe\
 		fetch1.exe\
 		fetch4.exe\
 		outline.exe\
-		nodecount.exe
+		nodecount.exe\
+		printtextnodes.exe
 
 all:$(PROGS)
 
@@ -14,6 +16,9 @@ findlinks1.exe:$(GOSRC)/findlinks/v1/findlinks1.go
 	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^
 
 findlinks2.exe:$(GOSRC)/findlinks/v2/findlinks2.go
+	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^
+
+findlinks3.exe:$(GOSRC)/findlinks/v3/findlinks3.go
 	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^
 
 fetch1.exe:$(GOSRC)/fetch/v1/main.go
@@ -28,6 +33,8 @@ outline.exe:$(GOSRC)/outline/main.go
 nodecount.exe:$(GOSRC)/nodecount/main.go
 	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^
 		
+printtextnodes.exe:$(GOSRC)/printtextnodes/main.go
+	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^
 
 clean:
 	rm -rf $(GOBIN)/
