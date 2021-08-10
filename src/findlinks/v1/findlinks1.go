@@ -1,6 +1,15 @@
+/*
+ * @Descripttion:
+ * @version: v0.1
+ * @Author: Elon C
+ * @Date: 2021-07-29 22:32:12
+ * @LastEditors: Elon C
+ * @LastEditTime: 2021-07-29 22:42:45
+ * @FilePath: \Golang_Starting\findlinks\v1\findlinks.go
+ */
+// Finklink 输出从标准输入中读入的HTML文档中的所有链接
 package main
 
-// findlinks1 输出从标注输入中读入的HTML文档中的所有链接
 import (
 	"fmt"
 	"os"
@@ -20,7 +29,7 @@ func main() {
 	}
 }
 
-//visit 将n节点中的每个链接添加到结果中
+// visit 将n节点中的每个链接添加到结果中
 func visit(links []string, n *html.Node) []string {
 	if n.Type == html.ElementNode && n.Data == "a" {
 		for _, a := range n.Attr {
@@ -33,6 +42,5 @@ func visit(links []string, n *html.Node) []string {
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
 		links = visit(links, c)
 	}
-
 	return links
 }

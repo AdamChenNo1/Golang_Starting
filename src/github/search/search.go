@@ -2,7 +2,6 @@
  * @Descripttion:
  * @version: v0.1
  * @Author: Elon C
-<<<<<<< HEAD
  * @Date: 2021-07-15 17:48:55
  * @LastEditors: Elon C
  * @LastEditTime: 2021-07-16 16:25:01
@@ -65,10 +64,3 @@ func SearchIssues(terms map[string][]string) (*IssuesSearchResult, error) {
 	res.Body.Close()
 	return &result, nil
 }
-=======
- * @Date: 2021-07-16 17:02:55
- * @LastEditors: Elon C
- * @LastEditTime: 2021-07-16 17:02:57
- * @FilePath: \Golang_Starting\github\issues\issues.go
- */
->>>>>>> a6c4b4fd1520f2d0e3f6a0578e37859b1151e596
