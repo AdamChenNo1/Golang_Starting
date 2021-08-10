@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	ch5 "go_start/src/nodecount/lib"
+
 	"golang.org/x/net/html"
 )
 
@@ -15,17 +17,6 @@ func main() {
 		fmt.Fprintf(os.Stderr, "outline：%v\n", err)
 		os.Exit(1)
 	}
-	count := nodecount(0, doc)
+	count := ch5.NodeCount(0, doc)
 	fmt.Printf("Count of nodes = %d\n", count)
-}
-
-func nodecount(count int, n *html.Node) int {
-	if n.Type == html.ElementNode {
-		count++
-	}
-
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		count = nodecount(count, c)
-	}
-	return count
 }
