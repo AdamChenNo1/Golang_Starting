@@ -28,7 +28,7 @@ func main() {
 			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
 			os.Exit(1)
 		}
-		fmt.Println(resp.Status)
+		// fmt.Println(resp.Status)
 		// b, err := ioutil.ReadAll(resp.Body) //读取整个响应结果并存入b
 		_, err = io.Copy(os.Stdout, resp.Body)
 		if err != nil {
