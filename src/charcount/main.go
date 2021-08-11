@@ -26,7 +26,7 @@ func main() {
 
 	in := bufio.NewReader(os.Stdin)
 	for {
-		r, n, err := in.ReadRune() //返回rune,nbytes,error
+		r, n, err := in.ReadRune() //返回rune:解码的字符,nbytes:UTF-8编码中字节的长度,error错误
 		if err == io.EOF {
 			break
 		}
@@ -34,7 +34,7 @@ func main() {
 			fmt.Fprintf(os.Stderr, "charcount:%v", err)
 			os.Exit(1)
 		}
-		if r == unicode.ReplacementChar && n == 1 {
+		if r == unicode.ReplacementChar && n == 1 { //输入的是不合法的UTF-8字符
 			invalid++
 			continue
 		}

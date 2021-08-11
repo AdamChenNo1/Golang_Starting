@@ -4,6 +4,7 @@ import (
 	"fmt"
 	ch5 "go_start/src/printtextnodes/lib"
 	"os"
+	"strings"
 
 	"golang.org/x/net/html"
 )
@@ -21,10 +22,13 @@ func ExamplePrintTextNodes() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "PrintTextNodes：%v\n", err)
 	}
+
 	for _, text := range ch5.PrintTextNodes(nil, doc) {
+		text = strings.TrimSpace(text)
 		fmt.Println(text)
 	}
+	// Output:
+	// hello
+	//
+	// world
 }
-
-// Hello
-// World
