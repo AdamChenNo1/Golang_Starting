@@ -8,6 +8,7 @@ PROGS := findlinks1.exe\
 		fetch1.exe\
 		fetch4.exe\
 		outline.exe\
+		outline2.exe\
 		nodecount.exe\
 		printtextnodes.exe\
 		wordfreq.exe\
@@ -35,7 +36,10 @@ fetch1.exe:$(GOSRC)/fetch/v1/main.go
 fetch4.exe:$(GOSRC)/fetch/v4/main.go
 	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^
 
-outline.exe:$(GOSRC)/outline/main.go
+outline.exe:$(GOSRC)/outline/v1/main/main.go
+	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^
+
+outline2.exe:$(GOSRC)/outline/v2/main/main.go
 	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^
 
 nodecount.exe:$(GOSRC)/nodecount/main.go
