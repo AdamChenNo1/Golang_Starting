@@ -10,9 +10,12 @@ PROGS := findlinks1.exe\
 		outline.exe\
 		nodecount.exe\
 		printtextnodes.exe\
-		wordfreq.exe
+		wordfreq.exe\
+		countwordsandimages.exe
 all:$(PROGS)
 
+countwordsandimages.exe:$(GOSRC)/countwordsandimages/v1/main/main.go
+	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^
 
 findlinks1.exe:$(GOSRC)/findlinks/v1/findlinks1.go
 	@GOBIN=$(GOBIN) go build -o $(GOBIN)/$@ $^

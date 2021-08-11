@@ -10,6 +10,6 @@ func ExampleCountWordsAndImages() {
 	words, images, _ := ch5.CountWordsAndImages(url)
 	fmt.Printf("words: %d\nimages: %d\n", words, images)
 	// Output:
-	// words: 132
+	// words: 6489
 	// images: 15
 }

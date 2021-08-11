@@ -32,7 +32,13 @@ func CountWordsAndImages(url string) (words, images int, err error) {
 
 func countWordsAndImages(n *html.Node) (words, images int) {
 	if n.Type == html.TextNode {
-		words++
+		// strings.TrimSpace(n.Data)
+		word := strings.Fields(n.Data)
+		for _, w := range word {
+			if w != "" {
+				words++
+			}
+		}
 	} else if n.Type == html.ElementNode && n.Data == "img" {
 		images++
 	}
