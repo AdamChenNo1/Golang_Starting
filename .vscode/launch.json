@@ -5,19 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch file",
-            "type": "go",
-            "request": "launch",
-            "mode": "debug",
-            "program": "${file}",
-            "args": ["C:\\Users\\Elon\\Desktop\\golang\\Golang_Starting\\bin\\index.html"]
-        },
-        {
             "name": "Launch Package",
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${fileDirname}"
+            "program": "${fileDirname}",
+            "args": [
+                "-v=true",
+                "D:\\Asus Gestue"
+            ]
         }
     ]
 }

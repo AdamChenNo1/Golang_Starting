@@ -1,0 +1,3 @@
+[submodule "tour_of_go/blog_service"]
+	path = tour_of_go/blog_service
+	url = git@github.com:gouslet/blog-service.git
