@@ -1,0 +1,9 @@
+# version: "0.0"
+
+services:
+    redis:
+      image: redis
+      # build: .
+      restart: on-failure
+      ports:
+        - 6379:6379
