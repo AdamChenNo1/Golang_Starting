@@ -1,10 +1,10 @@
 /*
- * File: \redis\connection\main.go                                             *
+ * File: /gorm/connect/main.go                                                 *
  * Project: go-demo                                                            *
- * Created At: Thursday, 2022/06/9 , 22:12:02                                  *
+ * Created At: Friday, 2022/06/17 , 13:12:45                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Thursday, 2022/06/9 , 15:33:34                               *
+ * Last Modified: Friday, 2022/06/17 , 13:18:20                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -14,32 +14,21 @@
 package main
 
 import (
-	"github.com/gomodule/redigo/redis"
-	"log"
 	"fmt"
+
+	_ "github.com/go-sql-driver/mysql"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 func main() {
-	conn, err := redis.Dial("tcp", "127.0.0.1:6379")
+	// 参考 https://github.com/go-sql-driver/mysql#dsn-data-source-name 获取详情
+	dsn := "root:toor@tcp(127.0.0.1:3306)/blog?charset=utf8mb4&parseTime=True&loc=Local"
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		// handle error
-		log.Fatal(err)
-	}
-	defer conn.Close()
-	
-	n, err := conn.Do("SET", "APPLE", "1")
-	if err != nil {
-		log.Fatal(err)
-		// handle error
+		fmt.Println(err)
 	}
 
-	fmt.Println(n)
-
-	n, err = conn.Do("GET", "APPLE")
-	if err != nil {
-		log.Fatal(err)
-		// handle error
-	}
-
-	fmt.Printf("%T\n",n)
+	fmt.Printf("%#v\n", db)
+	fmt.Printf("%+v\n", db)
 }
