@@ -2,8 +2,19 @@
 
 services:
     redis:
-      image: redis
-      # build: .
+      # image: redis
+      build: .
       restart: on-failure
       ports:
         - 6379:6379
+
+    # redis-browser:
+    #   # build: .
+    #   # image: obytes/redis-browser
+    #   image: rikudousage/redis-browser
+    #   depends_on: 
+    #     - redis
+    #   environment:
+    #     REDIS_HOST: 127.0.0.1
+    #   ports:
+    #     - 4567:4567

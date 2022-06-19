@@ -1,0 +1,29 @@
+# version: "0.0"
+
+services:
+  db:
+    image: mariadb
+    # deploy:
+    #   restart_policy:
+    #     condition: on-failure
+    #     max_attempts: 3
+    environment:
+      - MARIADB_USER=mysql
+      - MARIADB_PASSWORD=elon
+      - MARIADB_ROOT_PASSWORD=toor
+      - MYSQL_INITDB_SKIP_TZINFO=yes
+      
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      # - type: tmpfs
+      #   target: /docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    restart: on-failure
+    ports:
+      - 10000:8080
+    depends_on:
+      - db 
