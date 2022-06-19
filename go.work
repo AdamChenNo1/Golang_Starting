@@ -1,8 +1,10 @@
 go 1.18
 
 use (
-	./gopl
-	./go-demo
-	./tour_of_go/blog_service
 	./errcode
+	./errors
+	./go-demo
+	./gopl
+	./simplerpc
+	./tour_of_go/blog_service
 )
