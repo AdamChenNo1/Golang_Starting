@@ -1,10 +1,10 @@
 /*
  * File: \grpc\server\main.go                                                  *
- * Project: test                                                               *
+ * Project: go-demo                                                            *
  * Created At: Thursday, 2022/06/9 , 00:37:47                                  *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Thursday, 2022/06/9 , 00:48:58                               *
+ * Last Modified: Monday, 2022/06/20 , 21:49:25                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -15,9 +15,9 @@ package main
 
 import (
 	"context"
+	hello "go-demo/grpc"
 	"log"
 	"net"
-	"test/grpc"
 
 	grpc "google.golang.org/grpc"
 )

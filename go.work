@@ -4,12 +4,7 @@ use (
 	./errcode
 	./errors
 	./go-demo
-<<<<<<< HEAD
+	./go_concurrency
 	./gopl
 	./simplerpc
-	./tour_of_go/blog_service
-=======
-	// ./tour_of_go/blog_service
-	./errcode
->>>>>>> cd0aacd4f907a70063ae0a27d71bde0cc34eaa5b
 )

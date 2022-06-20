@@ -1,10 +1,10 @@
 /*
  * File: \rpc\hellorpc\main.go\main.go                                         *
- * Project: test                                                               *
+ * Project: go-demo                                                            *
  * Created At: Wednesday, 2022/06/8 , 22:49:30                                 *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Thursday, 2022/06/9 , 00:07:15                               *
+ * Last Modified: Monday, 2022/06/20 , 21:48:04                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -14,10 +14,10 @@
 package main
 
 import (
+	hellorpc "go-demo/rpc"
 	"log"
 	"net"
 	"net/rpc"
-	"test/rpc"
 )
 
 func main() {

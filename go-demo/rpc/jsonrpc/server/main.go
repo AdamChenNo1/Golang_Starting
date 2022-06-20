@@ -1,10 +1,10 @@
 /*
  * File: \rpc\jsonrpc\server\main.go                                           *
- * Project: test                                                               *
+ * Project: go-demo                                                            *
  * Created At: Wednesday, 2022/06/8 , 23:03:13                                 *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Thursday, 2022/06/9 , 00:04:30                               *
+ * Last Modified: Monday, 2022/06/20 , 21:48:04                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -15,11 +15,11 @@
 package main
 
 import (
+	hellorpc "go-demo/rpc"
 	"log"
 	"net"
 	"net/rpc"
 	"net/rpc/jsonrpc"
-	"test/rpc"
 )
 
 func main() {
