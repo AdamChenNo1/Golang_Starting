@@ -4,7 +4,7 @@
  * Created At: Thursday, 2022/06/16 , 14:17:06                                 *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Thursday, 2022/06/16 , 14:44:48                              *
+ * Last Modified: Monday, 2022/06/20 , 18:21:08                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -16,7 +16,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/marmotedu/errors"
+	"github.com/elchn/errors"
 	code "github.com/marmotedu/sample-code"
 )
 

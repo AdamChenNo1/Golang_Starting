@@ -4,7 +4,7 @@
  * Created At: Thursday, 2022/06/16 , 13:51:07                                 *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Thursday, 2022/06/16 , 14:02:21                              *
+ * Last Modified: Monday, 2022/06/20 , 18:21:08                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -17,7 +17,7 @@ package main
 import (
 	"log"
 
-	"github.com/marmotedu/errors"
+	"github.com/elchn/errors"
 )
 
 func main() {

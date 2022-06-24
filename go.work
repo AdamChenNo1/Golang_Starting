@@ -4,8 +4,7 @@ use (
 	./errcode
 	./errors
 	./go-demo
+	./go_concurrency
 	./gopl
 	./simplerpc
-	// ./tour_of_go/blog_service
-	./errcode
 )

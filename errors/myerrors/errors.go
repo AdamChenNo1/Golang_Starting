@@ -4,36 +4,47 @@
  * Created At: Monday, 2022/06/20 , 12:36:16                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Monday, 2022/06/20 , 13:53:23                                *
+ * Last Modified: Monday, 2022/06/20 , 18:43:17                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-package myerrors
+package main
 
 import (
-	"github.com/marmotedu/errors"
+	"fmt"
+
+	"github.com/elchn/errors"
 	code "github.com/marmotedu/sample-code"
 )
 
-type MyError struct {
-	// Code defines the business error code.
-	Code int `json:"code"`
+func main() {
+	e := errors.New("hello")
+	e1 := errors.WrapC(e, code.ErrBind, "hi")
+	fmt.Printf("%T\n", e)
+	fmt.Printf("%v\n", e)
+	fmt.Printf("%-v\n", e)
+	fmt.Printf("%#-v\n", e)
+	fmt.Printf("%+v\n", e)
+	fmt.Printf("%#-v\n", e)
+	fmt.Printf("%#+v\n", e)
+	fmt.Println(e.Error())
+	fmt.Println(e)
+	fmt.Println("----------------------------------")
 
-	// Message contains the detail of this message.
-	// This message is suitable to be exposed to external
-	Message string `json:"message"`
+	fmt.Printf("%T\n", e1)
+	fmt.Printf("%v\n", e1)
+	fmt.Printf("%-v\n", e1)
+	fmt.Printf("%+v\n", e1)
+	fmt.Printf("%#-v\n", e1)
+	fmt.Printf("%#+v\n", e1)
+	fmt.Println(e1.Error())
+	fmt.Println(e1.Error())
+	fmt.Println(errors.ParseCoder(e1).String())
 
-	Details any `json:"details,omitempty"`
-}
-
-func ParseError(e error) MyError {
-	myerror := MyError{
-	}
-	if e, ok := err.(*withCode); ok {
-		myerror.Code = 
-	}
-
+	fmt.Println(e1)
+	// bytes, _ := json.MarshalIndent(myError, "", " ")
+	// fmt.Println(string(bytes))
 }
