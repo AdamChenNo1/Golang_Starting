@@ -1,40 +1,34 @@
 /*
- * File: /store/tape_test.go                                                   *
+ * File: /test/stub.go                                                         *
  * Project: tdd                                                                *
- * Created At: Friday, 2022/06/24 , 12:32:54                                   *
+ * Created At: Friday, 2022/06/24 , 14:07:22                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 14:00:03                                *
+ * Last Modified: Friday, 2022/06/24 , 14:11:01                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-package store
+package test
 
-import (
-	"go_start/tdd/test"
-	"io/ioutil"
-	"testing"
-)
+import "go_start/tdd/model"
 
-func TestTapeWrite(t *testing.T) {
-	file, clean := test.CreateTempFile(t, "12345")
-	defer clean()
+type StubPlayerStore struct {
+	Scores   map[string]int
+	WinCalls []string
+	League   model.League
+}
 
-	tape := tape{file: file}
+func (s *StubPlayerStore) GetLeague() model.League {
+	return s.League
+}
 
-	tape.Write([]byte("abc"))
+func (s *StubPlayerStore) GetPlayerScore(name string) int {
+	return s.Scores[name]
+}
 
-	file.Seek(0, 0)
-
-	newFileContents, _ := ioutil.ReadAll(file)
-
-	got := string(newFileContents)
-	want := "abc"
-
-	if got != want {
-		t.Errorf("got '%s', want '%s'", got, want)
-	}
+func (s *StubPlayerStore) RecordWin(name string) {
+	s.WinCalls = append(s.WinCalls, name)
 }

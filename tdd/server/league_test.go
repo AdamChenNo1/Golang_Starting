@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/24 , 07:11:12                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 11:56:41                                *
+ * Last Modified: Friday, 2022/06/24 , 14:10:34                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -16,6 +16,7 @@ package server
 import (
 	"encoding/json"
 	"go_start/tdd/model"
+	"go_start/tdd/test"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -26,7 +27,7 @@ const (
 )
 
 func TestLeague(t *testing.T) {
-	store := stubPlayerStore{}
+	store := test.StubPlayerStore{}
 	s := NewPlayerServer(&store)
 
 	t.Run("it returns 200 on /league", func(t *testing.T) {
@@ -41,7 +42,7 @@ func TestLeague(t *testing.T) {
 			t.Fatalf("Unable to parse response from server '%s' into slice of Player, '%v'", response.Body, err)
 		}
 
-		AssertResponseStatus(t, response.Code, http.StatusOK)
+		test.AssertResponseStatus(t, response.Code, http.StatusOK)
 
 	})
 
@@ -51,7 +52,7 @@ func TestLeague(t *testing.T) {
 			{"Chris", 32},
 			{"Tiest", 32},
 		}
-		store := stubPlayerStore{nil, nil, wantedLeague}
+		store := test.StubPlayerStore{nil, nil, wantedLeague}
 		s := NewPlayerServer(&store)
 
 		request := NewLeagueRequest()
@@ -59,12 +60,12 @@ func TestLeague(t *testing.T) {
 
 		s.ServeHTTP(response, request)
 
-		got := GetLeagueFromResponse(t, response.Body)
+		got := test.GetLeagueFromResponse(t, response.Body)
 
-		AssertResponseStatus(t, response.Code, http.StatusOK)
-		AssertContentType(t, response, jsonContentType)
+		test.AssertResponseStatus(t, response.Code, http.StatusOK)
+		test.AssertContentType(t, response, jsonContentType)
 
-		AssertLeague(t, got, wantedLeague)
+		test.AssertLeague(t, got, wantedLeague)
 
 	})
 }

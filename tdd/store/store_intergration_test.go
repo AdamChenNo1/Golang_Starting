@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/24 , 05:03:43                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 13:20:59                                *
+ * Last Modified: Friday, 2022/06/24 , 13:59:37                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -34,25 +34,25 @@ func TestRecordingWinsAndRetrievingThemWithInMemoryStore(t *testing.T) {
 	t.Run("get score", func(t *testing.T) {
 		response := httptest.NewRecorder()
 		s.ServeHTTP(response, server.NewGetScoreRequest(player))
-		server.AssertResponseStatus(t, response.Code, http.StatusOK)
-		server.AssertResponseBody(t, response.Body.String(), "3")
+		test.AssertResponseStatus(t, response.Code, http.StatusOK)
+		test.AssertResponseBody(t, response.Body.String(), "3")
 	})
 
 	t.Run("get league", func(t *testing.T) {
 		response := httptest.NewRecorder()
 		s.ServeHTTP(response, server.NewLeagueRequest())
-		server.AssertResponseStatus(t, response.Code, http.StatusOK)
+		test.AssertResponseStatus(t, response.Code, http.StatusOK)
 
-		got := server.GetLeagueFromResponse(t, response.Body)
+		got := test.GetLeagueFromResponse(t, response.Body)
 		want := model.League{
 			{"Pepper", 3},
 		}
-		server.AssertLeague(t, got, want)
+		test.AssertLeague(t, got, want)
 	})
 }
 
 func TestRecordingWinsAndRetrievingThemWithFileSystemStore(t *testing.T) {
-	database, cleanDatabase := createTempFile(t, `[]`)
+	database, cleanDatabase := test.CreateTempFile(t, `[]`)
 	defer cleanDatabase()
 	fstore, err := NewFileSystemPlayerStore(database)
 	test.AssertNoError(t, err)
@@ -68,19 +68,19 @@ func TestRecordingWinsAndRetrievingThemWithFileSystemStore(t *testing.T) {
 	t.Run("get score", func(t *testing.T) {
 		response := httptest.NewRecorder()
 		s.ServeHTTP(response, server.NewGetScoreRequest(player))
-		server.AssertResponseStatus(t, response.Code, http.StatusOK)
-		server.AssertResponseBody(t, response.Body.String(), "3")
+		test.AssertResponseStatus(t, response.Code, http.StatusOK)
+		test.AssertResponseBody(t, response.Body.String(), "3")
 	})
 
 	t.Run("get league", func(t *testing.T) {
 		response := httptest.NewRecorder()
 		s.ServeHTTP(response, server.NewLeagueRequest())
-		server.AssertResponseStatus(t, response.Code, http.StatusOK)
+		test.AssertResponseStatus(t, response.Code, http.StatusOK)
 
-		got := server.GetLeagueFromResponse(t, response.Body)
+		got := test.GetLeagueFromResponse(t, response.Body)
 		want := model.League{
 			{"Pepper", 3},
 		}
-		server.AssertLeague(t, got, want)
+		test.AssertLeague(t, got, want)
 	})
 }
