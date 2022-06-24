@@ -1,28 +1,32 @@
 /*
- * File: /http/main.go                                                         *
+ * File: /server/league.go                                                     *
  * Project: tdd                                                                *
- * Created At: Friday, 2022/06/24 , 03:05:21                                   *
+ * Created At: Friday, 2022/06/24 , 06:32:56                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 09:26:55                                *
+ * Last Modified: Friday, 2022/06/24 , 10:11:51                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-package main
+package server
 
 import (
-	"go_start/tdd/server"
-	"log"
+	"encoding/json"
 	"net/http"
 )
 
-func main() {
-	s := server.NewPlayerServer(NewInMemoryPlayerStore())
+func (p *PlayerServer) leagueHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("content-type", "application/json")
 
-	if err := http.ListenAndServe(":5000", s); err != nil {
-		log.Fatalf("could not listen on port 5000: %v", err)
+	json.NewEncoder(w).Encode(p.Store.GetLeague())
+}
+
+func (p *PlayerServer) getLeagueTable() []Player {
+	return []Player{
+		{"Chris", 20},
 	}
 }

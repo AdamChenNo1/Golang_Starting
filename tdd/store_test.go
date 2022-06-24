@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/24 , 05:03:43                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 06:22:30                                *
+ * Last Modified: Friday, 2022/06/24 , 10:13:06                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -22,15 +22,30 @@ import (
 
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 	store := NewInMemoryPlayerStore()
-	s := server.PlayerServer{store}
+	s := server.NewPlayerServer(store)
 	player := "Pepper"
 
 	s.ServeHTTP(httptest.NewRecorder(), server.NewPostWinRequest(player))
 	s.ServeHTTP(httptest.NewRecorder(), server.NewPostWinRequest(player))
 	s.ServeHTTP(httptest.NewRecorder(), server.NewPostWinRequest(player))
 
-	response := httptest.NewRecorder()
-	s.ServeHTTP(response, server.NewGetScoreRequest(player))
-	server.AssertResponseStatus(t, response.Code, http.StatusOK)
-	server.AssertResponseBody(t, response.Body.String(), "3")
+	t.Run("get score", func(t *testing.T) {
+		response := httptest.NewRecorder()
+		s.ServeHTTP(response, server.NewGetScoreRequest(player))
+		server.AssertResponseStatus(t, response.Code, http.StatusOK)
+		server.AssertResponseBody(t, response.Body.String(), "3")
+	})
+
+	t.Run("get league", func(t *testing.T) {
+		response := httptest.NewRecorder()
+		s.ServeHTTP(response, server.NewLeagueRequest())
+		server.AssertResponseStatus(t, response.Code, http.StatusOK)
+
+		got := server.GetLeagueFromResponse(t, response.Body)
+		want := []server.Player{
+			{"Pepper", 3},
+		}
+		server.AssertLeague(t, got, want)
+
+	})
 }

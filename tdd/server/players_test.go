@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/24 , 02:52:01                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 05:20:52                                *
+ * Last Modified: Friday, 2022/06/24 , 09:49:48                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -22,6 +22,11 @@ import (
 type stubPlayerStore struct {
 	scores   map[string]int
 	winCalls []string
+	league   []Player
+}
+
+func (s *stubPlayerStore) GetLeague() []Player {
+	return s.league
 }
 
 func (s *stubPlayerStore) GetPlayerScore(name string) int {
@@ -39,7 +44,7 @@ func TestGETPlayerServer(t *testing.T) {
 			"Floyd":  10,
 		},
 	}
-	server := &PlayerServer{store}
+	server := NewPlayerServer(store)
 
 	t.Run("returns Pepper's score", func(t *testing.T) {
 		request := NewGetScoreRequest("Pepper")
@@ -82,7 +87,7 @@ func TestStoreWins(t *testing.T) {
 	store := stubPlayerStore{
 		scores: map[string]int{},
 	}
-	server := &PlayerServer{&store}
+	server := NewPlayerServer(&store)
 
 	t.Run("it returns accepted on POST", func(t *testing.T) {
 		request := NewPostWinRequest("Pepper")
