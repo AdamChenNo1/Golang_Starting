@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/24 , 02:52:01                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 09:49:48                                *
+ * Last Modified: Friday, 2022/06/24 , 11:57:40                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -14,6 +14,7 @@
 package server
 
 import (
+	"go_start/tdd/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -22,10 +23,10 @@ import (
 type stubPlayerStore struct {
 	scores   map[string]int
 	winCalls []string
-	league   []Player
+	league   model.League
 }
 
-func (s *stubPlayerStore) GetLeague() []Player {
+func (s *stubPlayerStore) GetLeague() model.League {
 	return s.league
 }
 

@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/24 , 02:51:49                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 09:47:11                                *
+ * Last Modified: Friday, 2022/06/24 , 12:01:34                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -15,26 +15,16 @@ package server
 
 import (
 	"fmt"
+	"go_start/tdd/model"
 	"net/http"
 )
 
-type Player struct {
-	Name string
-	Wins int
-}
-
-type PlayerStore interface {
-	GetPlayerScore(name string) int
-	RecordWin(name string)
-	GetLeague() []Player
-}
-
 type PlayerServer struct {
-	Store PlayerStore
+	Store model.PlayerStore
 	http.Handler
 }
 
-func NewPlayerServer(store PlayerStore) *PlayerServer {
+func NewPlayerServer(store model.PlayerStore) *PlayerServer {
 	p := new(PlayerServer)
 	p.Store = store
 

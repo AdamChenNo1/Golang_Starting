@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/24 , 07:11:12                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 10:14:50                                *
+ * Last Modified: Friday, 2022/06/24 , 11:56:41                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -15,6 +15,7 @@ package server
 
 import (
 	"encoding/json"
+	"go_start/tdd/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -33,7 +34,7 @@ func TestLeague(t *testing.T) {
 		response := httptest.NewRecorder()
 
 		s.ServeHTTP(response, request)
-		var got []Player
+		var got model.League
 
 		err := json.NewDecoder(response.Body).Decode(&got)
 		if err != nil {
@@ -45,7 +46,7 @@ func TestLeague(t *testing.T) {
 	})
 
 	t.Run("it returns the league table as JSON", func(t *testing.T) {
-		wantedLeague := []Player{
+		wantedLeague := model.League{
 			{"Cler", 32},
 			{"Chris", 32},
 			{"Tiest", 32},

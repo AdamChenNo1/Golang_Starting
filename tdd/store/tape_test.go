@@ -1,33 +1,39 @@
 /*
- * File: /server/league.go                                                     *
+ * File: /store/tape_test.go                                                   *
  * Project: tdd                                                                *
- * Created At: Friday, 2022/06/24 , 06:32:56                                   *
+ * Created At: Friday, 2022/06/24 , 12:32:54                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 11:57:33                                *
+ * Last Modified: Friday, 2022/06/24 , 13:20:00                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-package server
+package store
 
 import (
-	"encoding/json"
-	"go_start/tdd/model"
-	"net/http"
+	"io/ioutil"
+	"testing"
 )
 
-func (p *PlayerServer) leagueHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("content-type", "application/json")
+func TestTapeWrite(t *testing.T) {
+	file, clean := createTempFile(t, "12345")
+	defer clean()
 
-	json.NewEncoder(w).Encode(p.Store.GetLeague())
-}
+	tape := tape{file: file}
 
-func (p *PlayerServer) getLeagueTable() model.League {
-	return model.League{
-		{"Chris", 20},
+	tape.Write([]byte("abc"))
+
+	file.Seek(0, 0)
+
+	newFileContents, _ := ioutil.ReadAll(file)
+
+	got := string(newFileContents)
+	want := "abc"
+
+	if got != want {
+		t.Errorf("got '%s', want '%s'", got, want)
 	}
 }

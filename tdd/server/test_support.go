@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/24 , 05:12:20                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 10:12:04                                *
+ * Last Modified: Friday, 2022/06/24 , 11:58:48                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -16,6 +16,7 @@ package server
 import (
 	"encoding/json"
 	"fmt"
+	"go_start/tdd/model"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -56,7 +57,7 @@ func AssertResponseStatus(t *testing.T, got, want int) {
 	}
 }
 
-func AssertLeague(t *testing.T, got, want []Player) {
+func AssertLeague(t *testing.T, got, want model.League) {
 	t.Helper()
 
 	if !reflect.DeepEqual(got, want) {
@@ -64,7 +65,7 @@ func AssertLeague(t *testing.T, got, want []Player) {
 	}
 }
 
-func GetLeagueFromResponse(t *testing.T, body io.Reader) (league []Player) {
+func GetLeagueFromResponse(t *testing.T, body io.Reader) (league model.League) {
 	t.Helper()
 
 	err := json.NewDecoder(body).Decode(&league)

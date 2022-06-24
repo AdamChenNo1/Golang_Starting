@@ -1,33 +1,26 @@
 /*
- * File: /server/league.go                                                     *
+ * File: /model/league.go                                                      *
  * Project: tdd                                                                *
- * Created At: Friday, 2022/06/24 , 06:32:56                                   *
+ * Created At: Friday, 2022/06/24 , 11:55:02                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 11:57:33                                *
+ * Last Modified: Friday, 2022/06/24 , 11:55:11                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-package server
+package model
 
-import (
-	"encoding/json"
-	"go_start/tdd/model"
-	"net/http"
-)
+type League []Player
 
-func (p *PlayerServer) leagueHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("content-type", "application/json")
-
-	json.NewEncoder(w).Encode(p.Store.GetLeague())
-}
-
-func (p *PlayerServer) getLeagueTable() model.League {
-	return model.League{
-		{"Chris", 20},
+func (l League) Find(name string) *Player {
+	for i, p := range l {
+		if p.Name == name {
+			return &l[i]
+		}
 	}
+
+	return nil
 }

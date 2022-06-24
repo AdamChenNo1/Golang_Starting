@@ -1,33 +1,24 @@
 /*
- * File: /server/league.go                                                     *
+ * File: /testing/helper.go                                                    *
  * Project: tdd                                                                *
- * Created At: Friday, 2022/06/24 , 06:32:56                                   *
+ * Created At: Friday, 2022/06/24 , 13:09:56                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 11:57:33                                *
+ * Last Modified: Friday, 2022/06/24 , 13:13:48                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-package server
+package test
 
-import (
-	"encoding/json"
-	"go_start/tdd/model"
-	"net/http"
-)
+import "testing"
 
-func (p *PlayerServer) leagueHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("content-type", "application/json")
+func AssertNoError(t *testing.T, err error) {
+	t.Helper()
 
-	json.NewEncoder(w).Encode(p.Store.GetLeague())
-}
-
-func (p *PlayerServer) getLeagueTable() model.League {
-	return model.League{
-		{"Chris", 20},
+	if err != nil {
+		t.Fatalf("didn't expect an error but got one, %v", err)
 	}
 }

@@ -1,33 +1,28 @@
 /*
- * File: /server/league.go                                                     *
+ * File: /store/tape.go                                                        *
  * Project: tdd                                                                *
- * Created At: Friday, 2022/06/24 , 06:32:56                                   *
+ * Created At: Friday, 2022/06/24 , 12:32:46                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 11:57:33                                *
+ * Last Modified: Friday, 2022/06/24 , 12:47:18                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-package server
+package store
 
 import (
-	"encoding/json"
-	"go_start/tdd/model"
-	"net/http"
+	"os"
 )
 
-func (p *PlayerServer) leagueHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("content-type", "application/json")
-
-	json.NewEncoder(w).Encode(p.Store.GetLeague())
+type tape struct {
+	file *os.File
 }
 
-func (p *PlayerServer) getLeagueTable() model.League {
-	return model.League{
-		{"Chris", 20},
-	}
+func (t *tape) Write(p []byte) (n int, err error) {
+	t.file.Truncate(0)
+	t.file.Seek(0, 0)
+	return t.file.Write(p)
 }

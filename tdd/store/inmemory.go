@@ -4,17 +4,17 @@
  * Created At: Friday, 2022/06/24 , 06:28:04                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Friday, 2022/06/24 , 10:14:30                                *
+ * Last Modified: Friday, 2022/06/24 , 11:59:35                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-package main
+package store
 
 import (
-	"go_start/tdd/server"
+	"go_start/tdd/model"
 )
 
 type InMemoryPlayerStore struct {
@@ -33,11 +33,11 @@ func (i *InMemoryPlayerStore) RecordWin(name string) {
 	i.store[name]++
 }
 
-func (i *InMemoryPlayerStore) GetLeague() []server.Player {
-	var league []server.Player
-	
-	for name,wins := range i.store {
-		league = append(league, server.Player{name,wins})
+func (i *InMemoryPlayerStore) GetLeague() model.League {
+	var league model.League
+
+	for name, wins := range i.store {
+		league = append(league, model.Player{name, wins})
 	}
 	return league
 }
