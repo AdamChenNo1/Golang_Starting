@@ -7,4 +7,5 @@ use (
 	./go_concurrency
 	./gopl
 	./simplerpc
+	./tdd
 )
