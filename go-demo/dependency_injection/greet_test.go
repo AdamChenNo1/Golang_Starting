@@ -1,10 +1,10 @@
 /*
- * File: \test\os_error\main.go                                                *
+ * File: /dependency_injection/greet_test.go                                   *
  * Project: go-demo                                                            *
- * Created At: Monday, 2022/05/23 , 15:27:36                                   *
+ * Created At: Sunday, 2022/06/26 , 12:47:49                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Sunday, 2022/06/26 , 12:34:54                                *
+ * Last Modified: Sunday, 2022/06/26 , 12:52:50                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -15,17 +15,18 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"bytes"
+	"testing"
 )
 
-func main() {
-	fmt.Println(os.IsExist(nil))
-	s, err1 := os.Stat("storage/uploads")
-	fmt.Println(s)
-	fmt.Println(os.IsNotExist(err1))
-	fmt.Println("-------------------------------")
-	f, err2 := os.Stat("/workspaces/Golang_Starting/go_start/go-demo/os_error/main.go")
-	fmt.Println(f)
-	fmt.Println(os.IsNotExist(err2))
+func TestGreet(t *testing.T) {
+	buffer := bytes.Buffer{}
+	Greet(&buffer, "Chris")
+
+	got := buffer.String()
+	want := "Hello, Chris"
+
+	if got != want {
+		t.Errorf("got '%s', want '%s'", got, want)
+	}
 }

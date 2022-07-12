@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/17 , 14:04:43                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Saturday, 2022/06/18 , 06:43:12                              *
+ * Last Modified: Sunday, 2022/06/26 , 12:34:53                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -21,7 +21,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 
-	model "go-demo/gorm"
+	model "go_start/go-demo/gorm"
 )
 
 func main() {

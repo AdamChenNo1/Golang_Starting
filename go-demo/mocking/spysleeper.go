@@ -1,31 +1,38 @@
 /*
- * File: \test\os_error\main.go                                                *
+ * File: /mocking/sleeper.go                                                   *
  * Project: go-demo                                                            *
- * Created At: Monday, 2022/05/23 , 15:27:36                                   *
+ * Created At: Sunday, 2022/06/26 , 13:09:30                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Sunday, 2022/06/26 , 12:34:54                                *
+ * Last Modified: Monday, 2022/06/27 , 09:16:31                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-
 package main
 
-import (
-	"fmt"
-	"os"
-)
-
-func main() {
-	fmt.Println(os.IsExist(nil))
-	s, err1 := os.Stat("storage/uploads")
-	fmt.Println(s)
-	fmt.Println(os.IsNotExist(err1))
-	fmt.Println("-------------------------------")
-	f, err2 := os.Stat("/workspaces/Golang_Starting/go_start/go-demo/os_error/main.go")
-	fmt.Println(f)
-	fmt.Println(os.IsNotExist(err2))
+type SpySleeper struct {
+	Calls int
 }
+
+func (s *SpySleeper) Sleep() {
+	s.Calls++
+}
+
+type CountDownOperationSpy struct {
+	Calls []string
+}
+
+func (s *CountDownOperationSpy) Sleep() {
+	s.Calls = append(s.Calls, sleep)
+}
+
+func (s *CountDownOperationSpy) Write(p []byte) (n int, err error) {
+	s.Calls = append(s.Calls, write)
+	return
+}
+
+const sleep = "sleep"
+const write = "write"

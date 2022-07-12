@@ -4,7 +4,7 @@
  * Created At: Tuesday, 2022/06/14 , 20:37:16                                  *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Tuesday, 2022/06/14 , 22:13:20                               *
+ * Last Modified: Tuesday, 2022/07/12 , 08:50:27                               *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -67,7 +67,7 @@ func ExampleCall() {
 	}
 
 	wg.Wait()
-	// Output:
+	// Unordered Output:
 	// 0 + 0 = 0
 	// 4 + 16 = 20
 	// 3 + 9 = 12

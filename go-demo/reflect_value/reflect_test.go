@@ -1,31 +1,30 @@
 /*
- * File: \test\os_error\main.go                                                *
+ * File: /reflect_value/reflect_test.go                                        *
  * Project: go-demo                                                            *
- * Created At: Monday, 2022/05/23 , 15:27:36                                   *
+ * Created At: Tuesday, 2022/06/28 , 09:12:20                                  *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Sunday, 2022/06/26 , 12:34:54                                *
+ * Last Modified: Tuesday, 2022/06/28 , 09:15:13                               *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-
 package main
 
 import (
-	"fmt"
-	"os"
+	"reflect"
+	"testing"
 )
 
-func main() {
-	fmt.Println(os.IsExist(nil))
-	s, err1 := os.Stat("storage/uploads")
-	fmt.Println(s)
-	fmt.Println(os.IsNotExist(err1))
-	fmt.Println("-------------------------------")
-	f, err2 := os.Stat("/workspaces/Golang_Starting/go_start/go-demo/os_error/main.go")
-	fmt.Println(f)
-	fmt.Println(os.IsNotExist(err2))
+func TestArrayIndex(t *testing.T) {
+	a := [5]int{1, 2, 3, 4, 5}
+
+	want := 1
+	got := reflect.ValueOf(a).Index(0).Int()
+
+	if got != int64(want) {
+		t.Errorf("got %d, want %d", got, want)
+	}
 }

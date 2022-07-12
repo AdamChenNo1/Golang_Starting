@@ -4,7 +4,7 @@
  * Created At: Wednesday, 2022/06/8 , 22:49:30                                 *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Monday, 2022/06/20 , 21:48:04                                *
+ * Last Modified: Sunday, 2022/06/26 , 12:34:54                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -14,7 +14,7 @@
 package main
 
 import (
-	hellorpc "go-demo/rpc"
+	hellorpc "go_start/go-demo/rpc"
 	"log"
 	"net"
 	"net/rpc"

@@ -1,0 +1,1 @@
+# 提取struct中各个field的值，形成一个slice

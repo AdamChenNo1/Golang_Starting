@@ -1,48 +1,34 @@
 /*
- * File: \rpc\httprpc\server\main.go                                           *
+ * File: /mocking/countdown.go                                                 *
  * Project: go-demo                                                            *
- * Created At: Thursday, 2022/06/9 , 00:02:57                                  *
+ * Created At: Sunday, 2022/06/26 , 13:00:27                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Sunday, 2022/06/26 , 12:34:54                                *
+ * Last Modified: Sunday, 2022/06/26 , 13:27:20                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
  * Date      	By	Comments                                                   *
  * ----------	---	---------------------------------------------------------  *
  */
-
 package main
 
 import (
-	hellorpc "go_start/go-demo/rpc"
+	"fmt"
 	"io"
-	"net/http"
-	"net/rpc"
-	"net/rpc/jsonrpc"
 )
 
-func main() {
+const (
+	finalWord      = "Go!"
+	countdownStart = 3
+)
 
-	rpc.RegisterName("HelloService", new(hellorpc.HelloService))
+func Countdown(out io.Writer, sleeper Sleeper) {
+	for i := countdownStart; i > 0; i-- {
+		sleeper.Sleep()
+		fmt.Fprintln(out, i)
+	}
 
-	http.HandleFunc("/jsonrpc", func(w http.ResponseWriter, r *http.Request) {
-
-		var conn io.ReadWriteCloser = struct {
-			io.Writer
-
-			io.ReadCloser
-		}{
-
-			ReadCloser: r.Body,
-
-			Writer: w,
-		}
-
-		rpc.ServeCodec(jsonrpc.NewServerCodec(conn))
-
-	})
-
-	http.ListenAndServe(":1234", nil)
-
+	sleeper.Sleep()
+	fmt.Fprint(out, finalWord)
 }

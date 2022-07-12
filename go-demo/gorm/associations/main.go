@@ -4,7 +4,7 @@
  * Created At: Friday, 2022/06/17 , 14:04:43                                   *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Sunday, 2022/06/19 , 14:17:11                                *
+ * Last Modified: Sunday, 2022/06/26 , 12:34:53                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -22,7 +22,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	model "go-demo/gorm"
+	model "go_start/go-demo/gorm"
 )
 
 func main() {

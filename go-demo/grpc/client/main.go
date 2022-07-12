@@ -4,7 +4,7 @@
  * Created At: Thursday, 2022/06/9 , 00:49:24                                  *
  * Author: elchn                                                               *
  * -----                                                                       *
- * Last Modified: Monday, 2022/06/20 , 21:48:15                                *
+ * Last Modified: Sunday, 2022/06/26 , 12:34:54                                *
  * Modified By: elchn                                                          *
  * -----                                                                       *
  * HISTORY:                                                                    *
@@ -16,7 +16,7 @@ package main
 import (
 	"context"
 	"fmt"
-	hello "go-demo/grpc"
+	hello "go_start/go-demo/grpc"
 	"log"
 
 	grpc "google.golang.org/grpc"
